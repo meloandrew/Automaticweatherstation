@@ -10,6 +10,7 @@ class Crawler():
   def __init__(self, url: str):
     self.URL = url
     pass
+  
 
   def GetWeatherFromService(self) -> Weather:
     service_data = request.urlopen(self.URL)
