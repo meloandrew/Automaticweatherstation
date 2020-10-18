@@ -28,7 +28,7 @@ def from_str(x: Any) -> str:
 
 
 def from_datetime(x: Any) -> datetime:
-    return datetime.strptime(x, '%Y-%m-%dT%H:%M:%S%z')
+    return datetime.strptime(x, '%Y-%m-%dT%H:%M:%SZ')
 
 
 def from_list(f: Callable[[Any], T], x: Any) -> List[T]:

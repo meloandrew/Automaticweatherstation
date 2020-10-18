@@ -1,7 +1,7 @@
 import json
 import time
 
-from model.weather import Weather
+from .model.weather import Weather
 from urllib import request
 
 class Crawler():
