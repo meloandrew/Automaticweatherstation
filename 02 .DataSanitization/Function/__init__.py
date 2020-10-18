@@ -28,7 +28,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         json_post_prediction["wind_velocity"] = processed_data["Wind"].values[0]
 
         # TODO: Post
-        # response = requests.request("POST", url, data=json_post_prediction, headers=headers)
+        # requests.request("POST", url, data=json.dumps(json_post_prediction), headers=headers)
 
         json_retorno["status"] = "OK"
         json_retorno["msg"] = "Os dados do Thing Speak foram tratados com sucesso"
