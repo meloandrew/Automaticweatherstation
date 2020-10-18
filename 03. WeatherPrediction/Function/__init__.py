@@ -20,7 +20,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         pressure: float = float(str(req_body.get('pressure')))
 
         # Executa o modelo preditivo
-        prediction_result = Predict().run(temperature, humidity, wind_velocity, pressure)
+        prediction_result: int = Predict().run(temperature, humidity, wind_velocity, pressure)
 
         json_resultado_modelo["prediction"] = prediction_result
         json_resultado_modelo["model"] = req_body
