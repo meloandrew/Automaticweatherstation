@@ -5,7 +5,7 @@ class Predict():
         pass
 
     def run(self, temperature: float, humidity: float, wind_velocity: float, pressure: float) -> int:
-        model = pickle.load(open("Function\modelo_rf.sav", "rb"))
+        model = pickle.load(open("Function//modelo_rf.sav", "rb"))
         arr = [[temperature, humidity, pressure, wind_velocity]]
         predict: int = model.predict(arr)[0]
         return predict.item()
