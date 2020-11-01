@@ -11,7 +11,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     json_retorno: dict = { "status": None, "msg": None }
     json_post_prediction: dict = { "date": None, "temperature": None, "humidity": None, "wind_velocity": None, "pressure": None }
     headers: dict = { 'content-type': "application/json", 'cache-control': "no-cache", 'postman-token': "953560e7-36c4-8375-8721-af301923fbeb" }
-    url: str = "URL_SERVIÇO"
+    url: str = "https://tgweatherprediction.azurewebsites.net"
 
     try:
         # Lê os dados obtidos no Thing Speak
@@ -28,7 +28,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         json_post_prediction["wind_velocity"] = processed_data["Wind"].values[0]
 
         # TODO: Post
-        # requests.request("POST", url, data=json.dumps(json_post_prediction), headers=headers)
+        requests.request("POST", url, data=json.dumps(json_post_prediction), headers=headers)
 
         json_retorno["status"] = "OK"
         json_retorno["msg"] = "Os dados do Thing Speak foram tratados com sucesso"
