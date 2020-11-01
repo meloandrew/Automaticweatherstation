@@ -50,11 +50,13 @@ class Channel:
     field1: str
     field2: str
     field3: str
+    field4: str
+    field5: str
     created_at: datetime
     updated_at: datetime
     last_entry_id: int
 
-    def __init__(self, id: int, name: str, description: str, latitude: str, longitude: str, field1: str, field2: str, field3: str, created_at: datetime, updated_at: datetime, last_entry_id: int) -> None:
+    def __init__(self, id: int, name: str, description: str, latitude: str, longitude: str, field1: str, field2: str, field3: str, field4: str, field5: str, created_at: datetime, updated_at: datetime, last_entry_id: int) -> None:
         self.id = id
         self.name = name
         self.description = description
@@ -63,6 +65,8 @@ class Channel:
         self.field1 = field1
         self.field2 = field2
         self.field3 = field3
+        self.field4 = field4
+        self.field5 = field5
         self.created_at = created_at
         self.updated_at = updated_at
         self.last_entry_id = last_entry_id
@@ -78,10 +82,12 @@ class Channel:
         field1 = from_str(obj.get("field1"))
         field2 = from_str(obj.get("field2"))
         field3 = from_str(obj.get("field3"))
+        field4 = from_str(obj.get("field4"))
+        field5 = from_str(obj.get("field5"))
         created_at = from_datetime(obj.get("created_at"))
         updated_at = from_datetime(obj.get("updated_at"))
         last_entry_id = from_int(obj.get("last_entry_id"))
-        return Channel(id, name, description, latitude, longitude, field1, field2, field3, created_at, updated_at, last_entry_id)
+        return Channel(id, name, description, latitude, longitude, field1, field2, field3, field4, field5, created_at, updated_at, last_entry_id)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -93,6 +99,8 @@ class Channel:
         result["field1"] = from_str(self.field1)
         result["field2"] = from_str(self.field2)
         result["field3"] = from_str(self.field3)
+        result["field4"] = from_str(self.field4)
+        result["field5"] = from_str(self.field5)
         result["created_at"] = self.created_at.isoformat()
         result["updated_at"] = self.updated_at.isoformat()
         result["last_entry_id"] = from_int(self.last_entry_id)
@@ -105,13 +113,17 @@ class Feed:
     field1: str
     field2: str
     field3: str
+    field4: str
+    field5: str
 
-    def __init__(self, created_at: datetime, entry_id: int, field1: str, field2: str, field3: str) -> None:
+    def __init__(self, created_at: datetime, entry_id: int, field1: str, field2: str, field3: str, field4: str, field5: str) -> None:
         self.created_at = created_at
         self.entry_id = entry_id
         self.field1 = field1
         self.field2 = field2
         self.field3 = field3
+        self.field4 = field4
+        self.field5 = field5
 
     @staticmethod
     def from_dict(obj: Any) -> 'Feed':
@@ -121,7 +133,9 @@ class Feed:
         field1 = from_str(obj.get("field1"))
         field2 = from_str(obj.get("field2"))
         field3 = from_str(obj.get("field3"))
-        return Feed(created_at, entry_id, field1, field2, field3)
+        field4 = from_str(obj.get("field4"))
+        field5 = from_str(obj.get("field5"))
+        return Feed(created_at, entry_id, field1, field2, field3, field4, field5)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -130,6 +144,8 @@ class Feed:
         result["field1"] = from_str(self.field1)
         result["field2"] = from_str(self.field2)
         result["field3"] = from_str(self.field3)
+        result["field4"] = from_str(self.field4)
+        result["field5"] = from_str(self.field5)
         return result
 
 
