@@ -10,8 +10,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('"Data Sanitization" function processed a request')
     json_retorno: dict = { "status": None, "msg": None }
     json_post_prediction: dict = { "date": None, "temperature": None, "humidity": None, "wind_velocity": None, "pressure": None }
-    headers: dict = { 'content-type': "application/json", 'cache-control': "no-cache", 'postman-token': "953560e7-36c4-8375-8721-af301923fbeb" }
-    url: str = "https://tgweatherprediction.azurewebsites.net"
+    headers: dict = { 'content-type': "application/json" }
+    url: str = "https://tgweatherprediction.azurewebsites.net/api/Function"
 
     try:
         # Lê os dados obtidos no Thing Speak
@@ -27,7 +27,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         json_post_prediction["pressure"] = processed_data["Press"].values[0]
         json_post_prediction["wind_velocity"] = processed_data["Wind"].values[0]
 
-        # TODO: Post
         requests.request("POST", url, data=json.dumps(json_post_prediction), headers=headers)
 
         json_retorno["status"] = "OK"
@@ -38,4 +37,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         json_retorno["status"] = "Erro"
         json_retorno["msg"] = str(e)
         
+        logging.error(str(e))
+
         return func.HttpResponse(json.dumps(json_retorno, indent=4), status_code=500)
